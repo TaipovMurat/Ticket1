@@ -5,13 +5,18 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 @Slf4j
 public class BuyerReceive extends Behaviour {
 
     private String book;
+    private List<ACLMessage> answers;
+    private int receiversCount;
 
-    public BuyerReceive(String book){
+    public BuyerReceive(String book, int receiversCount){
         this.book = book;
+        this.receiversCount = receiversCount;
     }
 
 
@@ -20,17 +25,18 @@ public class BuyerReceive extends Behaviour {
         MessageTemplate mt = MessageTemplate.or(MessageTemplate.MatchPerformative(ACLMessage.AGREE), MessageTemplate.MatchPerformative(ACLMessage.FAILURE));
         ACLMessage receive = getAgent().receive(mt);
         if (receive != null){
-            if (receive.getPerformative() == ACLMessage.AGREE){
-                log.info("Deal's done! Book {} was sold for {} from {}", book, receive.getContent(),
-                        receive.getSender().getLocalName());
-            }else {
-                log.info("Sellers don't have {}", book);
-            }
+            answers.add(receive);
+        }
+        if (answers != null){
+            new ChooseWinner(answers);
+        }else {
+            log.warn("Buyer has no proposal");
         }
     }
 
     @Override
     public boolean done() {
-        return false;
+//        return false;
+        return receiversCount == answers.size();
     }
 }

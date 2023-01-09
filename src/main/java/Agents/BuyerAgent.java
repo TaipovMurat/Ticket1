@@ -7,14 +7,17 @@ import Helpers.DFHelper;
 import jade.core.Agent;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Random;
+
 @Slf4j
 public class BuyerAgent extends Agent {
     private String neededBook;
-    private int bookNum = (int) Math.random() * 4;
+    private int bookNum = new Random().nextInt(5);
     private String book;
 
     @Override
     protected void setup() {
+        log.info("Book number {}", bookNum);
         log.info("Buyer woke up");
         DFHelper.registerAgent(this, "Buyer");
         switch (bookNum){
@@ -32,9 +35,11 @@ public class BuyerAgent extends Agent {
                 break;
             case 4:
                 book = "Captain's daughter";
+                break;
+            case 5:
+                book = "Shine";
         }
         log.info("Buyer looking for {}", book);
         addBehaviour(new BuyerRequest(book));
-        addBehaviour(new BuyerReceive(book));
     }
 }

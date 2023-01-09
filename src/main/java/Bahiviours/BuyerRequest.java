@@ -49,7 +49,7 @@ public class BuyerRequest extends Behaviour {
         getAgent().send(request);
         sendRequest = true;
         log.info("Buyer send his request for book [{}]", book);
-//        getAgent().addBehaviour(new BuyerReceive(book));
+        getAgent().addBehaviour(new BuyerReceive(book, agents.size()));
     }
 
     @Override
