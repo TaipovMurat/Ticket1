@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cfg>
+    <book>
+        <BookName bookName = "War and peace" />
+        <BookName bookName = "Idiot" />
+        <BookName bookName = "Captain's daughter" />
+        <BookName bookName = "Master and Margarita" />
+        <BookName bookName = "Green mile" />
+    </book>
+</cfg>
