@@ -34,9 +34,10 @@ public class SellerBehaviour extends Behaviour {
         ACLMessage receive = getAgent().receive(mt);
         if (receive != null){
             agents = DFHelper.findAgents(getAgent(),"Buyer");
+            log.info("books {}", books);
             if (books.getBookName().contains(receive.getContent())){
-                log.info("It's {} dollars for {}", price, getAgent().receive().getContent());
                 price = r.nextInt(high-low)+low;
+                log.info("It's {} dollars for {}", price, receive.getContent());
                 msg.setPerformative(ACLMessage.AGREE);
                 msg.setContent(String.valueOf(price));
             }else {
