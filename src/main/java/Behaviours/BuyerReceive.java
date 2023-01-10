@@ -1,4 +1,4 @@
-package Bahiviours;
+package Behaviours;
 
 import jade.core.behaviours.Behaviour;
 import jade.lang.acl.ACLMessage;
@@ -52,16 +52,11 @@ public class BuyerReceive extends Behaviour {
             }
 
         }
-//        if (answers != null){
-//            new ChooseWinner(answers);
-//        }else {
-//            log.warn("Buyer has no proposal");
-//        }
     }
 
     @Override
     public boolean done() {
-//        return false;
+        System.out.println(receiversCount == answers.size());
         return receiversCount == answers.size();
     }
 }

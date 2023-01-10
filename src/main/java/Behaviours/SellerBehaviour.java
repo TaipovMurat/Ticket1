@@ -1,4 +1,4 @@
-package Bahiviours;
+package Behaviours;
 
 import Agents.SellerCfg;
 import Helpers.DFHelper;

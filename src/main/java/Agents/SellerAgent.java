@@ -1,6 +1,6 @@
 package Agents;
 
-import Bahiviours.SellerBehaviour;
+import Behaviours.SellerBehaviour;
 import Helpers.DFHelper;
 import jade.core.Agent;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Locale;
 
 @Slf4j
 public class SellerAgent extends Agent {

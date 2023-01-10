@@ -1,4 +1,4 @@
-package Bahiviours;
+package Behaviours;
 
 import Helpers.DFHelper;
 import jade.core.AID;

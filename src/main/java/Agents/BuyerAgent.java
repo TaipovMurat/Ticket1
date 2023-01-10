@@ -1,16 +1,12 @@
 package Agents;
 
 
-import Bahiviours.BuyerReceive;
-import Bahiviours.BuyerRequest;
-import Bahiviours.SendRequestsAndWaitResponse;
+import Behaviours.BuyerRequest;
 import Helpers.DFHelper;
 import jade.core.AID;
 import jade.core.Agent;
-import jade.lang.acl.ACLMessage;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
