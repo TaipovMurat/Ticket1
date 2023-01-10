@@ -56,7 +56,6 @@ public class BuyerReceive extends Behaviour {
 
     @Override
     public boolean done() {
-        System.out.println(receiversCount == answers.size());
         return receiversCount == answers.size();
     }
 }
