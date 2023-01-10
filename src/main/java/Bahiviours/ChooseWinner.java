@@ -9,6 +9,7 @@ import java.util.List;
 @Slf4j
 public class ChooseWinner extends OneShotBehaviour {
     private List<ACLMessage> answers;
+    private String winner;
 
     public ChooseWinner(List<ACLMessage> answers){
         this.answers = answers;
@@ -33,9 +34,11 @@ public class ChooseWinner extends OneShotBehaviour {
             ACLMessage winnerInfo = new ACLMessage(ACLMessage.INFORM);
             winnerInfo.addReceiver(bestSeller);
             myAgent.send(winnerInfo);
-            log.info("Winner is {} with price {}", bestSeller.getLocalName(), price);
+            winner = bestSeller.getLocalName();
+            log.info("Winner is {} with price {}", winner, price);
         }else {
             log.warn("strange");
         }
     }
+
 }

@@ -17,7 +17,7 @@ public class SellerAgent extends Agent {
 
     @Override
     protected void setup() {
-        log.info("Seller agent {} was born", this.getLocalName());
+//        log.info("Seller agent {} was born", this.getLocalName());
         DFHelper.registerAgent(this, "Seller");
         books = getConfigByName(SellerCfg.class, this.getLocalName());
         addBehaviour(new SellerBehaviour(books));
