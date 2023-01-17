@@ -13,7 +13,7 @@ import java.util.Random;
 @Slf4j
 public class BuyerAgent extends Agent {
     private String neededBook;
-    private int bookNum = new Random().nextInt(6);
+    private int bookNum = new Random().nextInt(6); // Number of book that we are looking for
 //    private int bookNum = 1;
     private String book;
     private List<AID> receivers;
@@ -21,8 +21,8 @@ public class BuyerAgent extends Agent {
     @Override
     protected void setup() {
 //        log.info("Buyer woke up");
-        DFHelper.registerAgent(this, "Buyer");
-        switch (bookNum){
+        DFHelper.registerAgent(this, "Buyer"); // Register agent in DF
+        switch (bookNum){ // Buyer choose his needed book
             case 0:
                 book = "War and peace";
                 break;
@@ -43,8 +43,5 @@ public class BuyerAgent extends Agent {
         }
         log.info("Buyer looking for {}", book);
         addBehaviour(new BuyerRequest(book));
-//        receivers = DFHelper.findAgents(this,"Seller");
-//        List<ACLMessage> ans = new ArrayList<>();
-//        addBehaviour(new SendRequestsAndWaitResponse(this, 1000,receivers, ans, book));
     }
 }

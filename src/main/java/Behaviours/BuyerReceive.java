@@ -25,20 +25,21 @@ public class BuyerReceive extends Behaviour {
 
     @Override
     public void action() {
-        MessageTemplate mt = MessageTemplate.or(MessageTemplate.MatchPerformative(ACLMessage.PROPOSE), MessageTemplate.MatchPerformative(ACLMessage.FAILURE));
+        MessageTemplate mt = MessageTemplate.or(MessageTemplate.MatchPerformative(ACLMessage.PROPOSE),
+                MessageTemplate.MatchPerformative(ACLMessage.FAILURE));
         ACLMessage receive = myAgent.receive(mt);
         if (receive != null){
             log.info("I received answers from {} with price {}", receive.getSender().getLocalName(), receive.getContent());
             answers.add(receive);
             if (receive.getPerformative() == ACLMessage.PROPOSE){
-                prices.add(Integer.valueOf(receive.getContent()));
+                prices.add(Integer.valueOf(receive.getContent())); // Parse price from seller
                 log.info("Price {}", Integer.valueOf(receive.getContent()));
             }
         }else {
             block();
         }
 
-        if (receiversCount == answers.size()){
+        if (receiversCount == answers.size()){ // Find minimal price
             if (prices.size() != 0){
                 minprice = prices.get(0);
                 for (Integer price: prices){

@@ -10,7 +10,7 @@ import java.util.List;
 
 @Slf4j
 public class BuyerRequest extends Behaviour {
-
+    // you could make it OneShotBehaviour
     private List<AID> agents;
 //    private int bookNum = (int) Math.random() * 4;
     private String book;
@@ -29,27 +29,11 @@ public class BuyerRequest extends Behaviour {
         for (AID agent: agents){
             request.addReceiver(agent);
         }
-//        switch (bookNum){
-//            case 0:
-//                book = "War and peace";
-//                break;
-//            case 1:
-//                book = "Oblomov";
-//                break;
-//            case 2:
-//                book = "Green mile";
-//                break;
-//            case 3:
-//                book = "Idiot";
-//                break;
-//            case 4:
-//                book = "Captain's daughter";
-//        }
-        request.setContent(book);
-        getAgent().send(request);
-        sendRequest = true;
+        request.setContent(book); // Set content for message
+        getAgent().send(request); // Send request for seleers
         log.info("Buyer send his request for book [{}]", book);
         getAgent().addBehaviour(new BuyerReceive(book, agents.size()));
+        sendRequest = true;
     }
 
     @Override
